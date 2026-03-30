@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+  backend:
+    build: ./backend
+    image: shuaib777sas/backend
+    ports:
+      - "5000:5000"
+    environment:
+      # Tell the backend to allow requests from the EC2 Frontend
+      - FRONTEND_URL=http://13.200.252.220:3000
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - mongo
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        # Build the frontend pointing to the EC2 backend API
+        - NEXT_PUBLIC_API_URL=http://13.200.252.220:5000/api
+    image: shuaib777sas/frontend
+    ports:
+      - "3000:3000"
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
