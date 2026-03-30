@@ -6,26 +6,37 @@ on:
       - main
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
+    # 1. Checkout code
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Build Docker images
-      run: |
-        docker build -t yourdockerhub/backend ./backend
-        docker build -t yourdockerhub/frontend ./frontend
-
-    - name: Login Docker Hub
+    # 2. Login to Docker Hub
+    - name: Login to Docker Hub
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
+    # 3. Build backend image
+    - name: Build backend image
+      run: |
+        docker build -t shuaib777sas/backend:latest ./backend
+
+    # 4. Build frontend image (IMPORTANT: pass API URL)
+    - name: Build frontend image
+      run: |
+        docker build \
+        --build-arg NEXT_PUBLIC_API_URL=http://${{ secrets.EC2_HOST }}:5000/api \
+        -t shuaib777sas/frontend:latest ./frontend
+
+    # 5. Push images
     - name: Push images
       run: |
-        docker push yourdockerhub/backend
-        docker push yourdockerhub/frontend
+        docker push shuaib777sas/backend:latest
+        docker push shuaib777sas/frontend:latest
 
+    # 6. Deploy to EC2
     - name: Deploy to EC2
       uses: appleboy/ssh-action@v0.1.0
       with:
@@ -33,7 +44,7 @@ jobs:
         username: ubuntu
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
-          docker pull yourdockerhub/backend
-          docker pull yourdockerhub/frontend
+          docker pull shuaib777sas/backend:latest
+          docker pull shuaib777sas/frontend:latest
           docker-compose down
           docker-compose up -d
