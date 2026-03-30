@@ -10,32 +10,38 @@ jobs:
     # 1. Checkout code
     - name: Checkout code
       uses: actions/checkout@v3
+
     # 2. Login to Docker Hub
     - name: Login to Docker Hub
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
     # 3. Build backend image
     - name: Build backend image
-      run: |
-        docker build -t shuaib777sas/backend:latest ./backend
+      run: docker build -t shuaib777sas/backend:latest ./backend
+
     # 4. Build frontend image
     - name: Build frontend image
       run: |
         docker build \
-        --build-arg NEXT_PUBLIC_API_URL=http://${{ secrets.EC2_HOST }}:5000/api \
-        -t shuaib777sas/frontend:latest ./frontend
+          --build-arg NEXT_PUBLIC_API_URL=http://${{ secrets.EC2_HOST }}:5000/api \
+          -t shuaib777sas/frontend:latest ./frontend
+
     # 5. Push images
     - name: Push images
       run: |
         docker push shuaib777sas/backend:latest
         docker push shuaib777sas/frontend:latest
+
     # 6. Deploy to EC2
     - name: Deploy to EC2
       run: |
         echo "${{ secrets.EC2_SSH_KEY }}" > key.pem
         chmod 400 key.pem
         ssh -i key.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} "
+          docker system prune -a --volumes -f &&
           docker pull shuaib777sas/backend:latest &&
           docker pull shuaib777sas/frontend:latest &&
           docker-compose down &&
           docker-compose up -d
         "
+        rm -f key.pem
