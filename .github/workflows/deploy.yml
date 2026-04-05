@@ -31,17 +31,3 @@ jobs:
       run: |
         docker push shuaib777sas/backend:latest
         docker push shuaib777sas/frontend:latest
-
-    # 6. Deploy to EC2
-    - name: Deploy to EC2
-      run: |
-        echo "${{ secrets.EC2_SSH_KEY }}" > key.pem
-        chmod 400 key.pem
-        ssh -i key.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} "
-          docker system prune -a --volumes -f &&
-          docker pull shuaib777sas/backend:latest &&
-          docker pull shuaib777sas/frontend:latest &&
-          docker-compose down &&
-          docker-compose up -d
-        "
-        rm -f key.pem
