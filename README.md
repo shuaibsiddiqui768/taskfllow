@@ -1,75 +1,81 @@
-# TaskFlow — Full-Stack Task Manager
+# TaskFlow — Full-Stack Task Management
 
-A modern, full-stack task management application built with **Next.js**, **Node.js + Express**, and **MongoDB**.
+A professional, modern, and fully automated full-stack task management application. Built natively with the bleeding-edge **Next.js App Router**, powered by a robust **Node.js/Express** backend, and deployed automatically via **GitHub Actions** to AWS EC2 using **Docker**.
 
-## 🏗️ Project Structure
+## 🏗️ Architecture & Tech Stack
 
-```
-/project-root
-├── /frontend          # Next.js (React + TypeScript + Tailwind CSS)
-│   ├── /src
-│   │   ├── /app       # App Router pages
-│   │   ├── /context   # Auth context provider
-│   │   └── /lib       # API client utilities
-│   └── ...
-├── /backend           # Node.js + Express REST API
-│   ├── /config        # Database connection
-│   ├── /middleware     # JWT authentication
-│   ├── /models        # Mongoose schemas (User, Task)
-│   ├── /routes        # API routes (auth, tasks)
-│   └── server.js      # Entry point
-└── README.md
-```
+### 🎨 Frontend (Next.js Application)
+- **Framework:** Next.js 16+ (App Router)
+- **Language:** TypeScript
+- **State & Data Fetching:** React 19 Context, Axios, `react-hot-toast`
+- **UI & Styling:** Tailwind CSS v4, Lucide React Icons
+- **Design System:** Custom **Glassmorphism** with an elegant Earth-tone (Light Brown/Amber & White) visual aesthetic, smooth transitions, micro-animations, and animated SVGs.
+
+### ⚙️ Backend (Node.js API)
+- **Environment:** Node.js
+- **Framework:** Express.js 4.21+
+- **Database:** MongoDB via Mongoose
+- **Security:** JWT-based robust authentication (`jsonwebtoken`, `bcryptjs`), and explicit CORS control.
+
+### 🚀 Infrastructure & DevOps (CI/CD)
+TaskFlow features a completely automated modern DevOps pipeline:
+1. **GitHub Actions**: On every push to `main`, temporary cloud runners securely checkout the code.
+2. **Dockerization**: The frontend and backend are containerized (`Dockerfile`), injecting live production IPs.
+3. **Registry**: Built containers are published directly to **Docker Hub**.
+4. **Live EC2 Deployment**: The pipeline remotes into the AWS EC2, pulls the fresh Docker images, safely prunes the old dependencies, and restarts the environment instantly using `docker-compose.yml`.
+
+---
 
 ## ✨ Features
 
-- **User Authentication** — Register, login, JWT-based sessions
-- **Task CRUD** — Create, read, update, delete tasks
-- **Task Properties** — Title, description, status, priority, due date
-- **Dashboard** — Stats cards, completion rate chart, recent tasks
-- **Search & Filter** — Filter by status/priority, search by title
-- **Status Toggle** — Click to cycle through todo → in-progress → completed
-- **Responsive Design** — Mobile-first with sidebar navigation
-- **Beautiful UI** — Glassmorphism, gradients, micro-animations, dark theme
+- **End-to-End User Authentication** — Secure Registration, Login, and JWT session handling.
+- **Task CRUD Operations** — Create, Read, Update, and Delete your tasks seamlessly.
+- **Smart Task Properties** — Track Title, extensive Descriptions, varied Statuses, Priorities, and precise Due Dates.
+- **Dynamic Dashboard** — Beautiful Glassmoprhic stat cards, an animated radial completion rate SVG chart, and a quick-view of recent tasks.
+- **Search & Filter Mechanism** — Comprehensive filtering globally by status/priority, combined with a real-time title search search query.
+- **One-Click Toggles** — Cycle instantly through *todo → in-progress → completed* without opening a task block.
+- **Fully Responsive** — Works perfectly on Mobile with customized sliding hamburger navigation.
+- **Aesthetic Excellence** — Warm light-mode UI, frosted glass utility overlays, subtle hover shadows, and beautiful CSS gradients.
 
-## 🚀 Getting Started
+---
+
+## 🚀 Getting Started Locally
 
 ### Prerequisites
-
 - Node.js 18+
-- MongoDB (local or Atlas)
+- MongoDB (Running locally or an Atlas connection URI)
 
 ### 1. Backend Setup
-
 ```bash
 cd backend
 npm install
-# Edit .env with your MongoDB URI
+# Ensure you have a .env file with your mongo connection (e.g. MONGO_URI, JWT_SECRET)
 npm run dev
 ```
 
 ### 2. Frontend Setup
-
 ```bash
 cd frontend
 npm install
+# Ensure .env.local contains: NEXT_PUBLIC_API_URL=http://localhost:5000/api
 npm run dev
 ```
 
-### 3. Open in browser
+### 3. Open in Browser
+- Frontend: `http://localhost:3000`
+- Backend API runs on: `http://localhost:5000/api`
 
-- Frontend: http://localhost:3000
-- Backend API: http://localhost:5000/api
+---
 
-## 🔌 API Endpoints
+## 🔌 API Endpoints Reference
 
 | Method | Endpoint | Description |
 |--------|----------|-------------|
-| POST | `/api/auth/register` | Register new user |
-| POST | `/api/auth/login` | Login user |
-| GET | `/api/auth/me` | Get current user |
-| GET | `/api/tasks` | Get all tasks (with filters) |
-| GET | `/api/tasks/stats` | Get task statistics |
-| POST | `/api/tasks` | Create new task |
-| PUT | `/api/tasks/:id` | Update task |
-| DELETE | `/api/tasks/:id` | Delete task |
+| `POST` | `/api/auth/register` | Register a new user |
+| `POST` | `/api/auth/login` | Login user via JWT |
+| `GET`  | `/api/auth/me` | Fetch authenticated current user profile |
+| `GET`  | `/api/tasks` | Get all tasks (Supports status/priority filters) |
+| `GET`  | `/api/tasks/stats` | Aggregate high-level task statistics |
+| `POST` | `/api/tasks` | Create a new task |
+| `PUT`  | `/api/tasks/:id` | Update an existing task |
+| `DELETE`| `/api/tasks/:id` | Drop a task |

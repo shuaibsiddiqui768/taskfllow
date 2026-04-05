@@ -150,21 +150,21 @@ export default function TasksPage() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'todo':
-        return <Circle className="w-5 h-5 text-surface-400" />;
+        return <Circle className="w-5 h-5 text-amber-700" />;
       case 'in-progress':
-        return <Clock className="w-5 h-5 text-amber-400" />;
+        return <Clock className="w-5 h-5 text-amber-600" />;
       case 'completed':
-        return <CheckCircle2 className="w-5 h-5 text-emerald-400" />;
+        return <CheckCircle2 className="w-5 h-5 text-emerald-600" />;
       default:
-        return <Circle className="w-5 h-5 text-surface-400" />;
+        return <Circle className="w-5 h-5 text-amber-700" />;
     }
   };
 
   const getStatusBadge = (status: string) => {
     const styles: Record<string, string> = {
-      todo: 'bg-surface-500/20 text-surface-300',
-      'in-progress': 'bg-amber-500/20 text-amber-300',
-      completed: 'bg-emerald-500/20 text-emerald-300',
+      todo: 'bg-surface-500/20 text-amber-900',
+      'in-progress': 'bg-amber-500/20 text-amber-800',
+      completed: 'bg-emerald-500/20 text-emerald-800',
     };
     const labels: Record<string, string> = {
       todo: 'To Do',
@@ -182,9 +182,9 @@ export default function TasksPage() {
 
   const getPriorityBadge = (priority: string) => {
     const styles: Record<string, string> = {
-      high: 'text-red-400',
-      medium: 'text-amber-400',
-      low: 'text-emerald-400',
+      high: 'text-red-600',
+      medium: 'text-amber-600',
+      low: 'text-emerald-600',
     };
     return (
       <span className={`flex items-center gap-1 text-xs font-medium ${styles[priority] || ''}`}>
@@ -208,8 +208,8 @@ export default function TasksPage() {
         {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl lg:text-3xl font-bold text-white">Tasks</h1>
-          <p className="text-surface-400 mt-1">
+          <h1 className="text-2xl lg:text-3xl font-bold text-amber-950">Tasks</h1>
+          <p className="text-amber-700 mt-1">
             {filteredTasks.length} task{filteredTasks.length !== 1 ? 's' : ''}{' '}
             total
           </p>
@@ -217,7 +217,7 @@ export default function TasksPage() {
         <button
           id="create-task-btn"
           onClick={openCreateModal}
-          className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium bg-gradient-to-r from-primary-600 to-purple-600 text-white rounded-xl hover:from-primary-500 hover:to-purple-500 transition-all shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 shrink-0"
+          className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium bg-gradient-to-r from-primary-600 to-amber-600 text-amber-950 rounded-xl hover:from-primary-500 hover:to-amber-500 transition-all shadow-lg shadow-primary-500/25 hover:shadow-primary-500/40 shrink-0"
         >
           <Plus className="w-4 h-4" />
           New Task
@@ -227,14 +227,14 @@ export default function TasksPage() {
       {/* Search & Filter Bar */}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-surface-500" />
+          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-amber-800" />
           <input
             id="search-tasks"
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search tasks..."
-            className="w-full pl-10 pr-4 py-2.5 bg-surface-800/50 border border-surface-700/50 rounded-xl text-white placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all text-sm"
+            className="w-full pl-10 pr-4 py-2.5 bg-white/80 border border-amber-200 rounded-xl text-amber-950 placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all text-sm"
           />
         </div>
         <button
@@ -242,7 +242,7 @@ export default function TasksPage() {
           className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
             showFilters || filterStatus !== 'all' || filterPriority !== 'all'
               ? 'bg-primary-600/20 text-primary-300 border border-primary-500/20'
-              : 'glass-light text-surface-300 hover:text-white'
+              : 'glass-light text-amber-900 hover:text-amber-950'
           }`}
         >
           <Filter className="w-4 h-4" />
@@ -257,14 +257,14 @@ export default function TasksPage() {
       {showFilters && (
         <div className="glass rounded-xl p-4 flex flex-wrap gap-4 animate-slide-up">
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-surface-400">
+            <label className="text-xs font-medium text-amber-700">
               Status
             </label>
             <select
               id="filter-status"
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="block w-40 px-3 py-2 bg-surface-800/50 border border-surface-700/50 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/50"
+              className="block w-40 px-3 py-2 bg-white/80 border border-amber-200 rounded-lg text-amber-950 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/50"
             >
               <option value="all">All</option>
               <option value="todo">To Do</option>
@@ -273,14 +273,14 @@ export default function TasksPage() {
             </select>
           </div>
           <div className="space-y-1.5">
-            <label className="text-xs font-medium text-surface-400">
+            <label className="text-xs font-medium text-amber-700">
               Priority
             </label>
             <select
               id="filter-priority"
               value={filterPriority}
               onChange={(e) => setFilterPriority(e.target.value)}
-              className="block w-40 px-3 py-2 bg-surface-800/50 border border-surface-700/50 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/50"
+              className="block w-40 px-3 py-2 bg-white/80 border border-amber-200 rounded-lg text-amber-950 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500/50"
             >
               <option value="all">All</option>
               <option value="high">High</option>
@@ -294,13 +294,13 @@ export default function TasksPage() {
       {/* Tasks List */}
       {filteredTasks.length === 0 ? (
         <div className="glass rounded-2xl p-12 text-center">
-          <div className="w-16 h-16 rounded-2xl bg-surface-800/50 flex items-center justify-center mx-auto mb-4">
-            <CheckCircle2 className="w-8 h-8 text-surface-500" />
+          <div className="w-16 h-16 rounded-2xl bg-white/80 flex items-center justify-center mx-auto mb-4">
+            <CheckCircle2 className="w-8 h-8 text-amber-800" />
           </div>
-          <h3 className="text-lg font-semibold text-white mb-2">
+          <h3 className="text-lg font-semibold text-amber-950 mb-2">
             {search ? 'No tasks found' : 'No tasks yet'}
           </h3>
-          <p className="text-sm text-surface-400 mb-4">
+          <p className="text-sm text-amber-700 mb-4">
             {search
               ? 'Try a different search term'
               : 'Create your first task to get started!'}
@@ -308,7 +308,7 @@ export default function TasksPage() {
           {!search && (
             <button
               onClick={openCreateModal}
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium bg-gradient-to-r from-primary-600 to-purple-600 text-white rounded-xl hover:from-primary-500 hover:to-purple-500 transition-all"
+              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium bg-gradient-to-r from-primary-600 to-amber-600 text-amber-950 rounded-xl hover:from-primary-500 hover:to-amber-500 transition-all"
             >
               <Plus className="w-4 h-4" />
               Create Task
@@ -320,7 +320,7 @@ export default function TasksPage() {
           {filteredTasks.map((task, i) => (
             <div
               key={task._id}
-              className="glass rounded-xl p-4 hover:scale-[1.005] transition-all duration-200 group animate-slide-up"
+              className="glass rounded-xl p-4 hover:scale-[1.005] hover:shadow-lg hover:shadow-primary-500/5 transition-all duration-200 group animate-slide-up"
               style={{ animationDelay: `${i * 0.03}s` }}
             >
               <div className="flex items-start gap-3">
@@ -339,8 +339,8 @@ export default function TasksPage() {
                     <h3
                       className={`font-medium ${
                         task.status === 'completed'
-                          ? 'text-surface-500 line-through'
-                          : 'text-white'
+                          ? 'text-amber-800 line-through'
+                          : 'text-amber-950'
                       }`}
                     >
                       {task.title}
@@ -349,11 +349,11 @@ export default function TasksPage() {
                     {getPriorityBadge(task.priority)}
                   </div>
                   {task.description && (
-                    <p className="text-sm text-surface-400 mt-1.5 line-clamp-2">
+                    <p className="text-sm text-amber-700 mt-1.5 line-clamp-2">
                       {task.description}
                     </p>
                   )}
-                  <div className="flex items-center gap-4 mt-2 text-xs text-surface-500">
+                  <div className="flex items-center gap-4 mt-2 text-xs text-amber-800">
                     {task.dueDate && (
                       <span className="flex items-center gap-1">
                         <Calendar className="w-3 h-3" />
@@ -378,7 +378,7 @@ export default function TasksPage() {
                 <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity shrink-0">
                   <button
                     onClick={() => openEditModal(task)}
-                    className="p-2 rounded-lg text-surface-400 hover:text-primary-400 hover:bg-primary-500/10 transition-all"
+                    className="p-2 rounded-lg text-amber-700 hover:text-primary-400 hover:bg-primary-500/10 transition-all"
                     title="Edit task"
                   >
                     <Edit3 className="w-4 h-4" />
@@ -393,7 +393,7 @@ export default function TasksPage() {
                       </button>
                       <button
                         onClick={() => setDeleteConfirm(null)}
-                        className="p-1 text-surface-400 hover:text-white"
+                        className="p-1 text-amber-700 hover:text-amber-950"
                       >
                         <X className="w-4 h-4" />
                       </button>
@@ -401,7 +401,7 @@ export default function TasksPage() {
                   ) : (
                     <button
                       onClick={() => setDeleteConfirm(task._id)}
-                      className="p-2 rounded-lg text-surface-400 hover:text-red-400 hover:bg-red-500/10 transition-all"
+                      className="p-2 rounded-lg text-amber-700 hover:text-red-400 hover:bg-red-500/10 transition-all"
                       title="Delete task"
                     >
                       <Trash2 className="w-4 h-4" />
@@ -426,12 +426,12 @@ export default function TasksPage() {
           <div className="relative w-full max-w-lg glass rounded-2xl p-6 shadow-2xl animate-slide-up">
             {/* Modal Header */}
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-white">
+              <h2 className="text-xl font-bold text-amber-950">
                 {editingTask ? 'Edit Task' : 'Create Task'}
               </h2>
               <button
                 onClick={() => setShowModal(false)}
-                className="p-2 rounded-lg text-surface-400 hover:text-white hover:bg-surface-800/50 transition-all"
+                className="p-2 rounded-lg text-amber-700 hover:text-amber-950 hover:bg-white/80 transition-all"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -441,7 +441,7 @@ export default function TasksPage() {
             <div className="space-y-4">
               {/* Title */}
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-surface-300">
+                <label className="block text-sm font-medium text-amber-900">
                   Title *
                 </label>
                 <input
@@ -451,7 +451,7 @@ export default function TasksPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, title: e.target.value })
                   }
-                  className="w-full px-4 py-3 bg-surface-800/50 border border-surface-700/50 rounded-xl text-white placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all"
+                  className="w-full px-4 py-3 bg-white/80 border border-amber-200 rounded-xl text-amber-950 placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all"
                   placeholder="What needs to be done?"
                   autoFocus
                 />
@@ -459,7 +459,7 @@ export default function TasksPage() {
 
               {/* Description */}
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-surface-300">
+                <label className="block text-sm font-medium text-amber-900">
                   Description
                 </label>
                 <textarea
@@ -469,7 +469,7 @@ export default function TasksPage() {
                     setFormData({ ...formData, description: e.target.value })
                   }
                   rows={3}
-                  className="w-full px-4 py-3 bg-surface-800/50 border border-surface-700/50 rounded-xl text-white placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all resize-none"
+                  className="w-full px-4 py-3 bg-white/80 border border-amber-200 rounded-xl text-amber-950 placeholder-surface-500 focus:outline-none focus:ring-2 focus:ring-primary-500/50 focus:border-primary-500/50 transition-all resize-none"
                   placeholder="Add more details..."
                 />
               </div>
@@ -477,7 +477,7 @@ export default function TasksPage() {
               {/* Status & Priority */}
               <div className="grid grid-cols-2 gap-4">
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-surface-300">
+                  <label className="block text-sm font-medium text-amber-900">
                     Status
                   </label>
                   <select
@@ -486,7 +486,7 @@ export default function TasksPage() {
                     onChange={(e) =>
                       setFormData({ ...formData, status: e.target.value })
                     }
-                    className="w-full px-4 py-3 bg-surface-800/50 border border-surface-700/50 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-primary-500/50 text-sm"
+                    className="w-full px-4 py-3 bg-white/80 border border-amber-200 rounded-xl text-amber-950 focus:outline-none focus:ring-2 focus:ring-primary-500/50 text-sm"
                   >
                     <option value="todo">To Do</option>
                     <option value="in-progress">In Progress</option>
@@ -494,7 +494,7 @@ export default function TasksPage() {
                   </select>
                 </div>
                 <div className="space-y-2">
-                  <label className="block text-sm font-medium text-surface-300">
+                  <label className="block text-sm font-medium text-amber-900">
                     Priority
                   </label>
                   <select
@@ -503,7 +503,7 @@ export default function TasksPage() {
                     onChange={(e) =>
                       setFormData({ ...formData, priority: e.target.value })
                     }
-                    className="w-full px-4 py-3 bg-surface-800/50 border border-surface-700/50 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-primary-500/50 text-sm"
+                    className="w-full px-4 py-3 bg-white/80 border border-amber-200 rounded-xl text-amber-950 focus:outline-none focus:ring-2 focus:ring-primary-500/50 text-sm"
                   >
                     <option value="low">Low</option>
                     <option value="medium">Medium</option>
@@ -514,7 +514,7 @@ export default function TasksPage() {
 
               {/* Due Date */}
               <div className="space-y-2">
-                <label className="block text-sm font-medium text-surface-300">
+                <label className="block text-sm font-medium text-amber-900">
                   Due Date
                 </label>
                 <input
@@ -524,7 +524,7 @@ export default function TasksPage() {
                   onChange={(e) =>
                     setFormData({ ...formData, dueDate: e.target.value })
                   }
-                  className="w-full px-4 py-3 bg-surface-800/50 border border-surface-700/50 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all text-sm"
+                  className="w-full px-4 py-3 bg-white/80 border border-amber-200 rounded-xl text-amber-950 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all text-sm"
                 />
               </div>
 
@@ -532,7 +532,7 @@ export default function TasksPage() {
               <div className="flex items-center gap-3 pt-2">
                 <button
                   onClick={() => setShowModal(false)}
-                  className="flex-1 py-3 rounded-xl text-sm font-medium text-surface-300 bg-surface-800/50 hover:bg-surface-800 transition-all"
+                  className="flex-1 py-3 rounded-xl text-sm font-medium text-amber-900 bg-white/80 hover:bg-white transition-all"
                 >
                   Cancel
                 </button>
@@ -540,7 +540,7 @@ export default function TasksPage() {
                   id="save-task-btn"
                   onClick={handleSubmit}
                   disabled={submitting}
-                  className="flex-1 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-primary-600 to-purple-600 text-white hover:from-primary-500 hover:to-purple-500 transition-all shadow-lg shadow-primary-500/25 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="flex-1 py-3 rounded-xl text-sm font-semibold bg-gradient-to-r from-primary-600 to-amber-600 text-amber-950 hover:from-primary-500 hover:to-amber-500 transition-all shadow-lg shadow-primary-500/25 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                 >
                   {submitting ? (
                     <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />

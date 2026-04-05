@@ -1,33 +1,33 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-200: #bfdbfe;
-  --color-primary-300: #93c5fd;
-  --color-primary-400: #60a5fa;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-800: #1e40af;
-  --color-primary-900: #1e3a8a;
+  --color-primary-50: #fdf8f6;
+  --color-primary-100: #f2e8e5;
+  --color-primary-200: #eaddd7;
+  --color-primary-300: #e0cec7;
+  --color-primary-400: #d2bab0;
+  --color-primary-500: #a18072;
+  --color-primary-600: #977669;
+  --color-primary-700: #846358;
+  --color-primary-800: #43302b;
+  --color-primary-900: #291d1a;
 
-  --color-surface-50: #f8fafc;
-  --color-surface-100: #f1f5f9;
-  --color-surface-200: #e2e8f0;
-  --color-surface-300: #cbd5e1;
-  --color-surface-400: #94a3b8;
-  --color-surface-500: #64748b;
-  --color-surface-600: #475569;
-  --color-surface-700: #334155;
-  --color-surface-800: #1e293b;
-  --color-surface-900: #0f172a;
-  --color-surface-950: #020617;
+  --color-surface-50: #ffffff;
+  --color-surface-100: #fafaf9;
+  --color-surface-200: #f5f5f4;
+  --color-surface-300: #e7e5e4;
+  --color-surface-400: #d6d3d1;
+  --color-surface-500: #a8a29e;
+  --color-surface-600: #78716c;
+  --color-surface-700: #57534e;
+  --color-surface-800: #44403c;
+  --color-surface-900: #292524;
+  --color-surface-950: #1c1917;
 
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-danger: #ef4444;
-  --color-info: #3b82f6;
+  --color-info: #a18072;
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 }
@@ -42,14 +42,14 @@
   }
 
   body {
-    background: #0f172a;
-    color: #e2e8f0;
+    background: #fafaf9;
+    color: #44403c;
     min-height: 100vh;
     font-family: var(--font-sans);
   }
 
   ::selection {
-    background-color: #3b82f6;
+    background-color: #a18072;
     color: white;
   }
 
@@ -61,32 +61,32 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: #334155;
+    background: #e7e5e4;
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+    background: #d6d3d1;
   }
 }
 
 /* Glass morphism utility */
 .glass {
-  background: rgba(15, 23, 42, 0.6);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(59, 130, 246, 0.15);
+  border: 1px solid rgba(161, 128, 114, 0.15);
 }
 
 .glass-light {
-  background: rgba(30, 41, 59, 0.4);
+  background: rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(148, 163, 184, 0.1);
+  border: 1px solid rgba(161, 128, 114, 0.1);
 }
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #60a5fa, #3b82f6, #60a5fa);
+  background: linear-gradient(135deg, #d2bab0, #846358, #d2bab0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -103,7 +103,7 @@
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, #3b82f6, #60a5fa, #3b82f6);
+  background: linear-gradient(135deg, #a18072, #d2bab0, #a18072);
   -webkit-mask:
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
@@ -117,10 +117,10 @@
 /* Pulse animation */
 @keyframes pulse-glow {
   0%, 100% {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 0 20px rgba(161, 128, 114, 0.2);
   }
   50% {
-    box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+    box-shadow: 0 0 40px rgba(161, 128, 114, 0.4);
   }
 }
 
