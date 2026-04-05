@@ -15,6 +15,7 @@ app.use(
     origin: [
       "http://localhost:3000", 
       "http://13.200.252.220:3000",
+      "https://taskfllow-1-wg5w.onrender.com",
       process.env.FRONTEND_URL // Dynamic frontend URL for Render
     ],
     credentials: true,
