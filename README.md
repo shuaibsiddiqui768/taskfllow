@@ -3,6 +3,9 @@
 A professional, modern, and fully automated full-stack task management application. Built natively with the bleeding-edge **Next.js App Router**, powered by a robust **Node.js/Express** backend, and deployed automatically via **GitHub Actions** and hosted on **Render**.
 
 🚀 **Live Demo:** [taskfllow-1-wg5w.onrender.com](https://taskfllow-1-wg5w.onrender.com/)
+<img width="1918" height="910" alt="1" src="https://github.com/user-attachments/assets/65036fb2-a4f7-4fbb-a465-dd2f7333882f" />
+<img width="1918" height="906" alt="2" src="https://github.com/user-attachments/assets/fa2b6a67-8d86-4dfd-a7eb-c44ae0d926b8" />
+<img width="1918" height="910" alt="3" src="https://github.com/user-attachments/assets/216ec048-1508-422a-bf6f-f1b905b8d785" />
 
 ## 🏗️ Architecture & Tech Stack
 
