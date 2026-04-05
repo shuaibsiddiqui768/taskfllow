@@ -12,7 +12,11 @@ const app = express();
 // Middleware
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://13.200.252.220:3000"],
+    origin: [
+      "http://localhost:3000", 
+      "http://13.200.252.220:3000",
+      process.env.FRONTEND_URL // Dynamic frontend URL for Render
+    ],
     credentials: true,
   })
 );

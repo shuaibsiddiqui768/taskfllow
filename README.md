@@ -1,6 +1,6 @@
 # TaskFlow — Full-Stack Task Management
 
-A professional, modern, and fully automated full-stack task management application. Built natively with the bleeding-edge **Next.js App Router**, powered by a robust **Node.js/Express** backend, and deployed automatically via **GitHub Actions** to AWS EC2 using **Docker**.
+A professional, modern, and fully automated full-stack task management application. Built natively with the bleeding-edge **Next.js App Router**, powered by a robust **Node.js/Express** backend, and deployed automatically via **GitHub Actions** and hosted on **Render**.
 
 ## 🏗️ Architecture & Tech Stack
 
@@ -13,16 +13,18 @@ A professional, modern, and fully automated full-stack task management applicati
 
 ### ⚙️ Backend (Node.js API)
 - **Environment:** Node.js
-- **Framework:** Express.js 4.21+
-- **Database:** MongoDB via Mongoose
-- **Security:** JWT-based robust authentication (`jsonwebtoken`, `bcryptjs`), and explicit CORS control.
+- **Framework:** Express.js
+- **Security:** JWT-based robust authentication (`jsonwebtoken`, `bcryptjs`), and dynamic CORS control natively mapped to the frontend URL.
 
 ### 🚀 Infrastructure & DevOps (CI/CD)
-TaskFlow features a completely automated modern DevOps pipeline:
-1. **GitHub Actions**: On every push to `main`, temporary cloud runners securely checkout the code.
-2. **Dockerization**: The frontend and backend are containerized (`Dockerfile`), injecting live production IPs.
-3. **Registry**: Built containers are published directly to **Docker Hub**.
-4. **Live EC2 Deployment**: The pipeline remotes into the AWS EC2, pulls the fresh Docker images, safely prunes the old dependencies, and restarts the environment instantly using `docker-compose.yml`.
+TaskFlow features a completely automated modern DevOps pipeline incorporating CI/CD and direct cloud hosting:
+
+1. **GitHub Actions (CI)**: On every push to the `main` branch, a GitHub Actions cloud runner automatically checks out the code structure.
+2. **Dockerization**: The frontend and backend environments are perfectly containerized side-by-side using secure, multi-stage Docker builds.
+3. **Docker Hub Registry**: The CI pipeline permanently securely pushes production-ready images online. You can view/pull the public images here:
+   - **Frontend Image**: [hub.docker.com/r/shuaib777sas/frontend](https://hub.docker.com/r/shuaib777sas/frontend)
+   - **Backend Image**: [hub.docker.com/r/shuaib777sas/backend](https://hub.docker.com/r/shuaib777sas/backend)
+4. **Render Deployment (CD)**: The application acts as two live Next.js and Node.js Web Services deployed natively on **Render**, communicating safely across an encrypted HTTPS network via tightly coupled Environment Variables (`FRONTEND_URL` & `NEXT_PUBLIC_API_URL`).
 
 ---
 
@@ -31,25 +33,21 @@ TaskFlow features a completely automated modern DevOps pipeline:
 - **End-to-End User Authentication** — Secure Registration, Login, and JWT session handling.
 - **Task CRUD Operations** — Create, Read, Update, and Delete your tasks seamlessly.
 - **Smart Task Properties** — Track Title, extensive Descriptions, varied Statuses, Priorities, and precise Due Dates.
-- **Dynamic Dashboard** — Beautiful Glassmoprhic stat cards, an animated radial completion rate SVG chart, and a quick-view of recent tasks.
-- **Search & Filter Mechanism** — Comprehensive filtering globally by status/priority, combined with a real-time title search search query.
+- **Dynamic Dashboard** — Beautiful Glassmorphic stat cards, an animated radial completion rate SVG chart, and a quick-view of recent tasks.
+- **Search & Filter Mechanism** — Comprehensive filtering globally by status/priority, combined with a real-time title search box.
 - **One-Click Toggles** — Cycle instantly through *todo → in-progress → completed* without opening a task block.
-- **Fully Responsive** — Works perfectly on Mobile with customized sliding hamburger navigation.
+- **Fully Responsive** — Works perfectly on Mobile with a customized sliding hamburger navigation menu.
 - **Aesthetic Excellence** — Warm light-mode UI, frosted glass utility overlays, subtle hover shadows, and beautiful CSS gradients.
 
 ---
 
 ## 🚀 Getting Started Locally
 
-### Prerequisites
-- Node.js 18+
-- MongoDB (Running locally or an Atlas connection URI)
-
 ### 1. Backend Setup
 ```bash
 cd backend
 npm install
-# Ensure you have a .env file with your mongo connection (e.g. MONGO_URI, JWT_SECRET)
+# Place your development secrets inside .env
 npm run dev
 ```
 
@@ -62,8 +60,8 @@ npm run dev
 ```
 
 ### 3. Open in Browser
-- Frontend: `http://localhost:3000`
-- Backend API runs on: `http://localhost:5000/api`
+- Frontend is served dynamically at: `http://localhost:3000`
+- Backend API listens actively on: `http://localhost:5000/api`
 
 ---
 
@@ -78,4 +76,4 @@ npm run dev
 | `GET`  | `/api/tasks/stats` | Aggregate high-level task statistics |
 | `POST` | `/api/tasks` | Create a new task |
 | `PUT`  | `/api/tasks/:id` | Update an existing task |
-| `DELETE`| `/api/tasks/:id` | Drop a task |
+| `DELETE`| `/api/tasks/:id` | Drop a specific task |
